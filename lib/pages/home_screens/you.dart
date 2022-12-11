@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:students_productive_room/pages/home_screens/you_screens/notes_screen.dart';
 
 class You extends StatelessWidget {
   const You({Key? key}) : super(key: key);
@@ -13,11 +14,20 @@ class You extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              youCards(Colors.black, 'NOTES', FontAwesomeIcons.notesMedical),
-              youCards(Colors.purple, 'DIARY', FontAwesomeIcons.faceSmile),
-              youCards(Colors.green, 'EVENTS', FontAwesomeIcons.calendarCheck),
-              youCards(Colors.red, 'NOTIFICATIONS', Icons.notifications),
-              youCards(Colors.blue, 'MENTIONS', FontAwesomeIcons.at),
+              youCards(Colors.black, 'NOTES', FontAwesomeIcons.notesMedical,
+                  () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NotesHome(),
+                        fullscreenDialog: true));
+              }),
+              youCards(
+                  Colors.purple, 'DIARY', FontAwesomeIcons.faceSmile, () {}),
+              youCards(Colors.green, 'EVENTS', FontAwesomeIcons.calendarCheck,
+                  () {}),
+              youCards(Colors.red, 'NOTIFICATIONS', Icons.notifications, () {}),
+              youCards(Colors.blue, 'MENTIONS', FontAwesomeIcons.at, () {}),
             ],
           ),
         ),
@@ -25,15 +35,15 @@ class You extends StatelessWidget {
     );
   }
 
-  GestureDetector youCards(Color color, String label, IconData iconData){
+  GestureDetector youCards(
+      Color color, String label, IconData iconData, VoidCallback onPress) {
     return GestureDetector(
-      onTap: (){print('object');},
+      onTap: onPress,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 15),
         child: Container(
           decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(20)),
+              color: color, borderRadius: BorderRadius.circular(20)),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Row(
@@ -43,11 +53,14 @@ class You extends StatelessWidget {
                   label,
                   style: GoogleFonts.abel(
                       color: Colors.white,
-                      fontSize: 50,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
-                Icon(iconData, color: Colors.white,)
+                Icon(
+                  iconData,
+                  color: Colors.white,
+                )
               ],
             ),
           ),
