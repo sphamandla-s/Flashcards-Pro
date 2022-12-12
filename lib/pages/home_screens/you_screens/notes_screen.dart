@@ -41,39 +41,75 @@ class _NotesHomeState extends State<NotesHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const AddNote(),
-                    fullscreenDialog: true));
-          },
-          child: const Icon(FontAwesomeIcons.pencil),
-        ),
-        body: isLoading
-            ? const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.red,
-                ),
-              )
-            : MasonryGridView.builder(
-                gridDelegate:
-                    const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3),
-                itemCount: _noteList.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: (){Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => NoteDetail(note: _noteList[index]),
-                            fullscreenDialog: true));},
-                    child: NoteCardWidget(
-                      index: index,note: _noteList[index],
-                    ),
-                  );
-                },
-              ));
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        centerTitle: true,
+        title: const Text('Notes'),
+        actions: [
+          IconButton(
+              onPressed: () {}, icon: const Icon(FontAwesomeIcons.search))
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const AddNote(),
+                  fullscreenDialog: true));
+        },
+        child: const Icon(FontAwesomeIcons.pencil),
+      ),
+      body: _noteList.isNotEmpty
+          ? isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.red,
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: MasonryGridView.builder(
+                    gridDelegate:
+                        SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: setGridLayout(_noteList.length)),
+                    itemCount: _noteList.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    NoteDetail(note: _noteList[index]),
+                                fullscreenDialog: true),
+                          );
+                        },
+                        child: NoteCardWidget(
+                          index: index,
+                          note: _noteList[index],
+                        ),
+                      );
+                    },
+                  ),
+                )
+          : const Center(
+              child: Text(
+                  'You have no notes click on the pen button to add a note'),
+            ),
+    );
+  }
+
+  int setGridLayout(int num) {
+    switch (num) {
+      case 1:
+        return 1;
+      case 2:
+        return 2;
+      case 3:
+        return 3;
+      default:
+        return 3;
+    }
   }
 }

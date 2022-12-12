@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget  floatingButton(int index){
+  Widget?  floatingButton(int index){
     if(index == 0){
       return FloatingActionButton(onPressed: (){}, child: const Icon(FontAwesomeIcons.pen),);
     } else if(index == 1){
@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if(index == 2){
       return FloatingActionButton(onPressed: (){}, child: const Icon(FontAwesomeIcons.message),);
     }
-    return FloatingActionButton(onPressed: (){}, child: const Icon(FontAwesomeIcons.pen),);
+    return null;
   }
 
 }

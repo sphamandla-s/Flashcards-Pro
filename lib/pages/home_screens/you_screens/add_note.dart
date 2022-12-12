@@ -5,6 +5,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../../consts/conts.dart';
 import '../../../models/notes_view_model.dart';
+import 'notes_screen.dart';
 
 class AddNote extends StatefulWidget {
   const AddNote({Key? key}) : super(key: key);
@@ -28,7 +29,9 @@ class _AddNoteState extends State<AddNote> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           createNote();
-          Navigator.of(context).pop();
+          Navigator.pushReplacement(context, MaterialPageRoute(
+              builder: (context) => const NotesHome(),
+              fullscreenDialog: true));
         },
         child: const Icon(Icons.send),
       ),
@@ -43,23 +46,27 @@ class _AddNoteState extends State<AddNote> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        icon: const Icon(
-                          Icons.close,
-                          color: Colors.white,
-                        )),
+                      onPressed: () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(
+                            builder: (context) => const NotesHome(),
+                            fullscreenDialog: true));
+                      },
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                      ),
+                    ),
                     Row(
                       children: [
                         IconButton(
-                            onPressed: () {
-                              setNoteColor();
-                            },
-                            icon: const Icon(
-                              Icons.color_lens,
-                              color: Colors.white,
-                            ))
+                          onPressed: () {
+                            setNoteColor();
+                          },
+                          icon: const Icon(
+                            Icons.color_lens,
+                            color: Colors.white,
+                          ),
+                        )
                       ],
                     )
                   ],
@@ -94,12 +101,12 @@ class _AddNoteState extends State<AddNote> {
       );
 
   Widget buildDescription() => TextFormField(
-        maxLines: 5,
+        maxLines: 10,
         controller: _noteController,
         style: const TextStyle(color: Colors.white, fontSize: 25),
         decoration: const InputDecoration(
           border: InputBorder.none,
-          hintText: 'Type something...',
+          hintText: 'Type note...',
           hintStyle: TextStyle(color: Colors.white, fontSize: 20),
         ),
         validator: (title) => title != null && title.isEmpty

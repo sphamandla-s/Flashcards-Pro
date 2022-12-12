@@ -30,7 +30,7 @@ class NotesRepository {
     return Notes.fromJson(note[0]);
   }
 
-  Future<void> deleteNote(int id) async {
+  Future<void> deleteNote(String id) async {
     final db = await YouDatabase.instance.database;
     await db.delete(
       'notes',

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-
 import '../../../consts/conts.dart';
-
 
 class NoteCardWidget extends StatelessWidget {
   const NoteCardWidget({
     Key? key,
-    required this.index, required this.note,
-
+    required this.index,
+    required this.note,
   }) : super(key: key);
 
   final int index;
@@ -34,12 +32,13 @@ class NoteCardWidget extends StatelessWidget {
             ),
             Center(
               child: Text(
-                  note['title'].toString(),
+                note['title'].toString(),
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
           ],
@@ -52,15 +51,15 @@ class NoteCardWidget extends StatelessWidget {
   double getMinHeight(int index) {
     switch (index % 4) {
       case 0:
-        return 100;
+        return 150;
       case 1:
-        return 150;
+        return 200;
       case 2:
-        return 150;
+        return 200;
       case 3:
-        return 100;
+        return 150;
       default:
-        return 100;
+        return 150;
     }
   }
 }
