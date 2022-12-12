@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../repository/notes_respository.dart';
 
 class NotesViewModel extends ChangeNotifier {
-  NotesRepository _notesRepository = NotesRepository();
+  final NotesRepository _notesRepository = NotesRepository();
 
   Future<List<Map<String, Object?>>> get getAllAllNotes =>
       _notesRepository.retrieveAllNotes();
@@ -11,10 +11,12 @@ class NotesViewModel extends ChangeNotifier {
   addNote(String id, String tittle, String note, DateTime createdOn,
       String noteColor) async {
     await _notesRepository.createNote(id, tittle, note, createdOn, noteColor);
+    notifyListeners();
   }
 
   deleteNote(String id) {
     _notesRepository.deleteNote(id);
+    notifyListeners();
   }
 
   updateNote(String id, String tittle, String note, DateTime createdOn,
@@ -24,5 +26,6 @@ class NotesViewModel extends ChangeNotifier {
 
   closeDatabase() {
     _notesRepository.closeDB();
+    notifyListeners();
   }
 }

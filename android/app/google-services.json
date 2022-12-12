@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "792028900916",
+    "project_id": "notify-a0d07",
+    "storage_bucket": "notify-a0d07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792028900916:android:39f8921ba3e26b19736461",
+        "android_client_info": {
+          "package_name": "com.example.students_productive_room"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792028900916-r63qd6bpf92ukahchrg7stfcmtr5ku79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1tRm7zhEqF07uFDXocFBBZwh1r1Qni-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792028900916-r63qd6bpf92ukahchrg7stfcmtr5ku79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
