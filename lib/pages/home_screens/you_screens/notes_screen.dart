@@ -6,6 +6,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:students_productive_room/pages/home_screens/you_screens/note_detail.dart';
 import 'add_note.dart';
 import 'note_card.dart';
+import 'note_search.dart';
 
 class NotesHome extends StatefulWidget {
   const NotesHome({Key? key}) : super(key: key);
@@ -47,7 +48,9 @@ class _NotesHomeState extends State<NotesHome> {
         title: const Text('Notes'),
         actions: [
           IconButton(
-              onPressed: () {}, icon: const Icon(FontAwesomeIcons.search))
+              onPressed: () {
+                showSearch(context: context, delegate: SearchNotes(noteList: _noteList));
+              }, icon: const Icon(FontAwesomeIcons.search))
         ],
       ),
       floatingActionButton: FloatingActionButton(

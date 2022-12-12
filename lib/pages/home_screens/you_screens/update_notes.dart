@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../../../consts/conts.dart';
 import '../../../models/notes_view_model.dart';
+import 'notes_screen.dart';
 
 class UpdateNote extends StatefulWidget {
   const UpdateNote({Key? key, required this.note}) : super(key: key);
@@ -46,6 +47,11 @@ class _UpdateNoteState extends State<UpdateNote> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           updateNote();
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const NotesHome(),
+                  fullscreenDialog: true));;
         },
         child: const Text('SAVE'),
       ),

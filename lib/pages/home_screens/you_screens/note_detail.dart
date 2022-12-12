@@ -19,7 +19,7 @@ class _NoteDetailState extends State<NoteDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor:
-        Conts.lightColors[int.parse(widget.note['noteColor'].toString())],
+            Conts.lightColors[int.parse(widget.note['noteColor'].toString())],
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 15.0, left: 5.0, right: 5.0),
@@ -31,9 +31,11 @@ class _NoteDetailState extends State<NoteDetail> {
                   children: [
                     IconButton(
                         onPressed: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(
-                              builder: (context) => const NotesHome(),
-                              fullscreenDialog: true));
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const NotesHome(),
+                                  fullscreenDialog: true));
                         },
                         icon: const Icon(Icons.arrow_back,
                             color: Conts.primaryIconColor)),
@@ -41,9 +43,13 @@ class _NoteDetailState extends State<NoteDetail> {
                       children: [
                         IconButton(
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) => UpdateNote(note: widget.note,),
-                                  fullscreenDialog: true));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => UpdateNote(
+                                            note: widget.note,
+                                          ),
+                                      fullscreenDialog: true));
                             },
                             icon: const Icon(
                               FontAwesomeIcons.pencil,
@@ -54,9 +60,11 @@ class _NoteDetailState extends State<NoteDetail> {
                               Provider.of<NotesViewModel>(context,
                                       listen: false)
                                   .deleteNote(widget.note['_id'].toString());
-                              Navigator.pushReplacement(context, MaterialPageRoute(
-                                  builder: (context) => const NotesHome(),
-                                  fullscreenDialog: true));
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const NotesHome(),
+                                      fullscreenDialog: true));
                             },
                             icon: const Icon(Icons.delete_forever,
                                 color: Conts.primaryIconColor)),
