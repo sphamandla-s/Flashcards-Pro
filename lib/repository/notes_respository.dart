@@ -18,7 +18,7 @@ class NotesRepository {
 
   Future<List<Map<String, Object?>>> retrieveAllNotes() async {
     final db = await YouDatabase.instance.database;
-    final queryResult = await db.query('notes');
+    final queryResult = await db.query('notes', orderBy: 'createdOn DESC');
     return queryResult;
   }
 
