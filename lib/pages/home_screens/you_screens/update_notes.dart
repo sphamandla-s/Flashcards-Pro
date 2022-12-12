@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 import '../../../consts/conts.dart';
 import '../../../models/notes_view_model.dart';
-import 'notes_screen.dart';
 
-class AddNote extends StatefulWidget {
-  const AddNote({Key? key}) : super(key: key);
+class UpdateNote extends StatefulWidget {
+  const UpdateNote({Key? key, required this.note}) : super(key: key);
+  final Map<String, Object?> note;
 
   @override
-  State<AddNote> createState() => _AddNoteState();
+  State<UpdateNote> createState() => _UpdateNoteState();
 }
 
-class _AddNoteState extends State<AddNote> {
-  int index = 0;
-  Color noteColor = Conts.lightColors[0];
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _noteController = TextEditingController();
+class _UpdateNoteState extends State<UpdateNote> {
+  late final TextEditingController _noteController;
+  late final TextEditingController _titleController;
+  late int index;
+  late Color noteColor;
   DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
-  final uuid = const Uuid();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _noteController =
+        TextEditingController(text: widget.note['note'].toString());
+    _titleController =
+        TextEditingController(text: widget.note['title'].toString());
+    noteColor =
+        Conts.lightColors[int.parse(widget.note['noteColor'].toString())];
+    index = int.parse(widget.note['noteColor'].toString());
+  }
 
   @override
   void dispose() {
@@ -32,18 +43,13 @@ class _AddNoteState extends State<AddNote> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: noteColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          createNote();
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const NotesHome(),
-                  fullscreenDialog: true));
+          updateNote();
         },
-        child: const Icon(Icons.send),
+        child: const Text('SAVE'),
       ),
+      backgroundColor: noteColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -56,11 +62,7 @@ class _AddNoteState extends State<AddNote> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const NotesHome(),
-                                fullscreenDialog: true));
+                        Navigator.of(context).pop();
                       },
                       icon: const Icon(
                         Icons.close,
@@ -95,8 +97,8 @@ class _AddNoteState extends State<AddNote> {
   }
 
   Widget buildTitle() => TextFormField(
-        maxLines: 1,
         controller: _titleController,
+        maxLines: 1,
         style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
@@ -139,15 +141,15 @@ class _AddNoteState extends State<AddNote> {
     }
   }
 
-  createNote() {
-    DateTime date = DateTime.now();
-    var createDate = dateFormat.parse(
-        '${date.year}-${date.month}-${date.day} ${date.hour}:${date.minute}:00');
-    Provider.of<NotesViewModel>(context, listen: false).addNote(
-        uuid.v4(),
+  updateNote() {
+    // var createDate = dateFormat.parse(
+    //     '${date.year}-${date.month}-${date.day} ${date.hour}:${date.minute}:00');
+    Provider.of<NotesViewModel>(context, listen: false).updateNote(
+        widget.note['_id'].toString(),
         _titleController.text,
         _noteController.text,
-        createDate,
+        dateFormat.parse(
+            '${widget.note['createdOn'].toString().split('T')[0]} ${widget.note['createdOn'].toString().split('T')[1].split(':00.')[0]}:00'),
         index.toString());
   }
 }

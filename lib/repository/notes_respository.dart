@@ -2,8 +2,6 @@ import 'package:students_productive_room/database/you_database.dart';
 import '../models/notes.dart';
 
 class NotesRepository {
-
-
   createNote(String id, String tittle, String note, DateTime createdOn,
       String noteColor) async {
     final db = await YouDatabase.instance.database;
@@ -39,7 +37,15 @@ class NotesRepository {
     );
   }
 
-  Future<void> updateNote(Notes notes) async {
+  Future<void> updateNote(String id, String tittle, String note,
+      DateTime createdOn, String noteColor) async {
+    Notes notes = Notes(
+      id: id,
+      title: tittle,
+      note: note,
+      createdOn: createdOn,
+      noteColor: noteColor,
+    );
     final db = await YouDatabase.instance.database;
     await db.update('notes', notes.toJson(),
         where: "_id = ?", whereArgs: [notes.id]);

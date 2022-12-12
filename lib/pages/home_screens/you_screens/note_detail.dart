@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:students_productive_room/models/notes_view_model.dart';
+import 'package:students_productive_room/pages/home_screens/you_screens/update_notes.dart';
 import '../../../consts/conts.dart';
 import 'notes_screen.dart';
 
@@ -18,7 +19,7 @@ class _NoteDetailState extends State<NoteDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor:
-            Conts.lightColors[int.parse(widget.note['noteColor'].toString())],
+        Conts.lightColors[int.parse(widget.note['noteColor'].toString())],
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 15.0, left: 5.0, right: 5.0),
@@ -39,7 +40,11 @@ class _NoteDetailState extends State<NoteDetail> {
                     Row(
                       children: [
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => UpdateNote(note: widget.note,),
+                                  fullscreenDialog: true));
+                            },
                             icon: const Icon(
                               FontAwesomeIcons.pencil,
                               color: Conts.primaryIconColor,
