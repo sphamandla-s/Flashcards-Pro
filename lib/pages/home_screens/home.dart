@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:students_productive_room/pages/home_screens/main_home.dart';
 import 'package:students_productive_room/pages/home_screens/rooms.dart';
 import 'package:students_productive_room/pages/home_screens/you.dart';
-import 'chats.dart';
 import 'drawer_menu.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -25,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var pages = [
     const GoingOns(),
     const Rooms(),
-    const Chats(),
+    //const Chats(),
     const You(),
   ];
 
@@ -38,8 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(Icons.home_outlined), label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(Icons.group), label: 'Rooms'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.message_outlined), label: 'DMs'),
+          // BottomNavigationBarItem(
+          //     icon: Icon(Icons.message_outlined), label: 'DMs'),
           BottomNavigationBarItem(
               icon: Icon(FontAwesomeIcons.faceSmile), label: 'You'),
         ],
@@ -57,11 +56,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget?  floatingButton(int index){
     if(index == 0){
       return FloatingActionButton(onPressed: (){}, child: const Icon(FontAwesomeIcons.pen),);
-    } else if(index == 1){
-      return FloatingActionButton(onPressed: (){}, child: const Icon(FontAwesomeIcons.add),);
-    } else if(index == 2){
-      return FloatingActionButton(onPressed: (){}, child: const Icon(FontAwesomeIcons.message),);
     }
+    else if(index == 1){
+      return FloatingActionButton(onPressed: (){}, child: const Icon(FontAwesomeIcons.add),);
+    }
+    // else if(index == 2){
+    //   return FloatingActionButton(onPressed: (){}, child: const Icon(FontAwesomeIcons.message),);
+    // }
     return null;
   }
 

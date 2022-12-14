@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:students_productive_room/models/notes_view_model.dart';
+import 'package:students_productive_room/models/notes_model/notes_view_model.dart';
 import 'package:students_productive_room/pages/home_screens/home.dart';
 import 'package:provider/provider.dart';
 

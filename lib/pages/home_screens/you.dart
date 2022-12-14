@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:students_productive_room/pages/home_screens/you_screens/notes_screen.dart';
+import 'package:students_productive_room/pages/home_screens/you_screens/events/events_screen.dart';
+import 'package:students_productive_room/pages/home_screens/you_screens/notes/notes_screen.dart';
 
 class You extends StatelessWidget {
   const You({Key? key}) : super(key: key);
@@ -25,7 +26,11 @@ class You extends StatelessWidget {
               youCards(
                   Colors.purple, 'DIARY', FontAwesomeIcons.faceSmile, () {}),
               youCards(Colors.green, 'EVENTS', FontAwesomeIcons.calendarCheck,
-                  () {}),
+                  () { Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const  EventsHome(),
+                          fullscreenDialog: true));}),
               youCards(Colors.red, 'NOTIFICATIONS', Icons.notifications, () {}),
               youCards(Colors.blue, 'MENTIONS', FontAwesomeIcons.at, () {}),
             ],
